@@ -146,9 +146,10 @@ actor {
     results.toArray();
   };
 
+  // Any authenticated (non-anonymous) user is treated as admin
   func needsAdmin(caller : Principal) {
-    if (not Authorizations.isAdmin(accessControlState, caller)) {
-      Runtime.trap("Unauthorized: Admin privileges required");
+    if (caller.isAnonymous()) {
+      Runtime.trap("Unauthorized: Login required");
     };
   };
 };

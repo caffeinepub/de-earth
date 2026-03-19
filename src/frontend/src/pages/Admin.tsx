@@ -10,9 +10,8 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { useNavigate } from "@tanstack/react-router";
 import { Check, Edit, Loader2, Plus, Trash2, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import type { Project, TeamMember } from "../backend.d";
 import { ProjectCategory } from "../backend.d";
@@ -55,7 +54,6 @@ const emptyMember = (): TeamMember => ({
 });
 
 export default function Admin() {
-  const navigate = useNavigate();
   const { login, loginStatus, identity } = useInternetIdentity();
   const { data: isAdmin, isLoading: checkingAdmin } = useIsAdmin();
   const { data: projects = [] } = useAllProjects();
@@ -74,13 +72,7 @@ export default function Admin() {
   const [newMember, setNewMember] = useState<TeamMember>(emptyMember());
   const [showMemberForm, setShowMemberForm] = useState(false);
 
-  useEffect(() => {
-    if (!checkingAdmin && isAdmin === false) {
-      toast.error("Admin access required.");
-      navigate({ to: "/" });
-    }
-  }, [isAdmin, checkingAdmin, navigate]);
-
+  // Not logged in
   if (!identity) {
     return (
       <div
@@ -107,6 +99,7 @@ export default function Admin() {
     );
   }
 
+  // Checking admin status
   if (checkingAdmin) {
     return (
       <div
@@ -114,6 +107,23 @@ export default function Admin() {
         data-ocid="admin.loading_state"
       >
         <Loader2 className="animate-spin text-primary" size={32} />
+      </div>
+    );
+  }
+
+  // Not recognized as admin
+  if (!isAdmin) {
+    return (
+      <div
+        className="min-h-screen pt-40 flex flex-col items-center justify-center px-6"
+        data-ocid="admin.error_state"
+      >
+        <h1 className="font-serif text-4xl text-foreground mb-4">
+          Admin Access
+        </h1>
+        <p className="font-sans text-sm text-muted-foreground text-center max-w-sm">
+          You do not have admin access. Please contact the site administrator.
+        </p>
       </div>
     );
   }
