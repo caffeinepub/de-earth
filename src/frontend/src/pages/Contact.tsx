@@ -44,7 +44,7 @@ export default function Contact() {
         message: form.message,
         timestamp: BigInt(Date.now()),
       });
-      toast.success("Your inquiry has been sent. We’ll be in touch soon.");
+      toast.success("Your inquiry has been sent. We'll be in touch soon.");
       setForm({
         name: "",
         email: "",
@@ -143,7 +143,8 @@ export default function Contact() {
                     <SelectItem value="Residential">Residential</SelectItem>
                     <SelectItem value="Commercial">Commercial</SelectItem>
                     <SelectItem value="Institutional">Institutional</SelectItem>
-                    <SelectItem value="Landscape">Landscape</SelectItem>
+                    <SelectItem value="Urban Design">Urban Design</SelectItem>
+                    <SelectItem value="Hospitality">Hospitality</SelectItem>
                     <SelectItem value="Other">Other</SelectItem>
                   </SelectContent>
                 </Select>
@@ -196,44 +197,55 @@ export default function Contact() {
           <div className="space-y-10">
             <div>
               <h2 className="font-serif text-2xl text-foreground mb-6">
-                de earth Studio
+                de Earth Architects
               </h2>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <MapPin size={16} className="text-primary mt-0.5 shrink-0" />
                   <p className="font-sans text-sm text-muted-foreground leading-relaxed">
-                    3rd Floor, Swaraj Tower
+                    Ragam Apartments, Pipeline Road
                     <br />
-                    Thrissur, Kerala 680 001
+                    Patteri, Kozhikode – 673016
                     <br />
-                    India
+                    Kerala, India
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail size={16} className="text-primary shrink-0" />
                   <a
-                    href="mailto:studio@deearth.in"
+                    href="mailto:support@deearth.com"
                     className="font-sans text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    studio@deearth.in
+                    support@deearth.com
                   </a>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Phone size={16} className="text-primary shrink-0" />
-                  <a
-                    href="tel:+914872000000"
-                    className="font-sans text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    +91 487 200 0000
-                  </a>
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-3">
+                    <Phone size={16} className="text-primary shrink-0" />
+                    <a
+                      href="tel:+914952741782"
+                      className="font-sans text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      +91 495 274 1782
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Phone size={16} className="text-primary shrink-0" />
+                    <a
+                      href="tel:+919947493333"
+                      className="font-sans text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      +91 9947 493 333
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="border border-border overflow-hidden">
               <iframe
-                title="de earth studio location"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=76.17%2C10.48%2C76.22%2C10.53&layer=mapnik"
+                title="de Earth studio location"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=75.76%2C11.22%2C75.84%2C11.28&layer=mapnik"
                 width="100%"
                 height="320"
                 style={{ border: 0, display: "block" }}
@@ -241,12 +253,12 @@ export default function Contact() {
               />
               <div className="px-4 py-3 bg-muted border-t border-border">
                 <a
-                  href="https://www.openstreetmap.org/#map=14/10.5051/76.1947"
+                  href="https://www.openstreetmap.org/#map=14/11.2588/75.7804"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-sans text-xs text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  View larger map — Thrissur, Kerala
+                  View larger map — Kozhikode, Kerala
                 </a>
               </div>
             </div>

@@ -34,13 +34,19 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: "easeOut" }}
           >
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-foreground leading-tight max-w-3xl mb-10">
-              Nurture.
+            <p className="font-sans text-xs tracking-widest uppercase text-primary mb-6">
+              Nurture &ndash; Create &ndash; Belong
+            </p>
+            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-foreground leading-tight max-w-4xl mb-6">
+              Designing With Nature.
               <br />
-              Create.
-              <br />
-              Belong.
+              Creating Meaningful Spaces.
             </h1>
+            <p className="font-sans text-base text-muted-foreground max-w-xl mb-10 leading-relaxed">
+              A multidisciplinary architecture and urban design practice based
+              in Kozhikode, Kerala, creating sustainable, context-driven, and
+              emotionally engaging spaces.
+            </p>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
               <Link
                 to="/contact"
@@ -71,9 +77,15 @@ export default function Home() {
             About the Practice
           </p>
           <p className="font-serif text-2xl md:text-3xl text-foreground leading-relaxed">
-            de earth is an architecture practice rooted in Kerala, India. We
-            design spaces that emerge from the land — sustainable, contextual,
-            and deeply human.
+            de Earth is a Kozhikode-based architecture and urban design firm
+            established in 2004. The practice focuses on sustainable,
+            nature-inclusive, and context-driven design.
+          </p>
+          <p className="font-sans text-base text-muted-foreground leading-relaxed mt-6">
+            With a multidisciplinary team, the firm delivers projects ranging
+            from residential homes to large-scale urban developments,
+            emphasizing cultural sensitivity, environmental responsibility, and
+            experiential spaces.
           </p>
         </div>
         <div className="mt-10 border-t border-border" />

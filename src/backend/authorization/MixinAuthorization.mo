@@ -1,13 +1,14 @@
 import AccessControl "./access-control";
 import Prim "mo:prim";
 import Runtime "mo:core/Runtime";
-import Principal "mo:core/Principal";
 
 mixin (accessControlState : AccessControl.AccessControlState) {
-  // Initialize auth (kept for compatibility but not required for access)
+  // Initialize auth (first caller becomes admin, others become users)
   public shared ({ caller }) func _initializeAccessControlWithSecret(userSecret : Text) : async () {
     switch (Prim.envVar<system>("CAFFEINE_ADMIN_TOKEN")) {
-      case (null) {};
+      case (null) {
+        Runtime.trap("CAFFEINE_ADMIN_TOKEN environment variable is not set");
+      };
       case (?adminToken) {
         AccessControl.initialize(accessControlState, caller, adminToken, userSecret);
       };
@@ -15,20 +16,15 @@ mixin (accessControlState : AccessControl.AccessControlState) {
   };
 
   public query ({ caller }) func getCallerUserRole() : async AccessControl.UserRole {
-    if (caller.isAnonymous()) { return #guest };
-    return #admin;
+    AccessControl.getUserRole(accessControlState, caller);
   };
 
   public shared ({ caller }) func assignCallerUserRole(user : Principal, role : AccessControl.UserRole) : async () {
-    // Any authenticated user can assign roles
-    if (caller.isAnonymous()) {
-      Runtime.trap("Unauthorized");
-    };
+    // Admin-only check happens inside
     AccessControl.assignRole(accessControlState, caller, user, role);
   };
 
-  // Any logged-in (non-anonymous) user is admin
   public query ({ caller }) func isCallerAdmin() : async Bool {
-    not caller.isAnonymous();
+    AccessControl.isAdmin(accessControlState, caller);
   };
 };
