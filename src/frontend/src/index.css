@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.25rem;
+    /* Warm off-white/beige background */
+    --background: 0.96 0.015 80;
+    --foreground: 0.15 0.005 80;
+    /* Card slightly lighter */
+    --card: 0.98 0.008 80;
+    --card-foreground: 0.15 0.005 80;
+    --popover: 0.98 0.008 80;
+    --popover-foreground: 0.15 0.005 80;
+    /* Deep forest green as primary */
+    --primary: 0.35 0.08 145;
+    --primary-foreground: 0.98 0.008 80;
+    /* Secondary muted */
+    --secondary: 0.92 0.012 80;
+    --secondary-foreground: 0.15 0.005 80;
+    --muted: 0.92 0.012 80;
+    --muted-foreground: 0.45 0.01 80;
+    --accent: 0.35 0.08 145;
+    --accent-foreground: 0.98 0.008 80;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.88 0.012 80;
+    --input: 0.88 0.012 80;
+    --ring: 0.35 0.08 145;
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.96 0.015 80;
+    --sidebar-foreground: 0.15 0.005 80;
+    --sidebar-primary: 0.35 0.08 145;
+    --sidebar-primary-foreground: 0.98 0.008 80;
+    --sidebar-accent: 0.92 0.012 80;
+    --sidebar-accent-foreground: 0.15 0.005 80;
+    --sidebar-border: 0.88 0.012 80;
+    --sidebar-ring: 0.35 0.08 145;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Playfair Display", serif;
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: "Playfair Display", serif;
+  }
+  .font-sans {
+    font-family: "Inter", sans-serif;
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .project-card-img {
+    transition: transform 0.5s ease;
+  }
+  .project-card:hover .project-card-img {
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  .project-card-img {
+    transition: none;
+  }
+}
